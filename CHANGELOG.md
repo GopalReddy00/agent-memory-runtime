@@ -5,7 +5,7 @@ All notable changes to this project are documented here. The format follows
 [Semantic Versioning](https://semver.org/). While the major version is `0`, minor
 releases may contain breaking changes.
 
-## [0.1.0] - Unreleased
+## [0.1.0] - 2026-11-19
 
 First public developer preview.
 
