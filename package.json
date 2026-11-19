@@ -1,0 +1,80 @@
+{
+  "name": "agent-memory-runtime",
+  "version": "0.1.0",
+  "description": "Event-backed conversational memory for AI agents: provenance-aware claims, authority tiers, budgeted context, crash-safe compaction, and a confirmation protocol for high-risk actions. Includes a MongoDB adapter.",
+  "keywords": [
+    "ai-agents",
+    "llm",
+    "agent-memory",
+    "conversation-memory",
+    "context-window",
+    "provenance",
+    "prompt-injection",
+    "outbox-pattern",
+    "mongodb",
+    "typescript"
+  ],
+  "author": "GurakaGopalReddy <GurakaGopalReddy@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/GopalReddy00/agent-memory-runtime#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GopalReddy00/agent-memory-runtime.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GopalReddy00/agent-memory-runtime/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./mongo": {
+      "types": "./dist/adapters/mongo.d.ts",
+      "import": "./dist/adapters/mongo.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.map",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:mongo": "MONGO_URI='mongodb://127.0.0.1:27017/?replicaSet=rs0&directConnection=true' vitest run",
+    "smoke": "node scripts/smoke.mjs",
+    "set-identity": "node scripts/set-identity.mjs",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "peerDependencies": {
+    "mongodb": ">=6"
+  },
+  "peerDependenciesMeta": {
+    "mongodb": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "mongodb": "^7.9.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
